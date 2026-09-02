@@ -1,0 +1,24 @@
+﻿# IDE
+.vs/
+.vscode/
+.idea/
+
+# Build
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Other
+Collections/
+Developers/
+__ExternalActors__/
+__ExternalObjects__/
+
+# temporary
+Characters/
+
+# project
+*.vsconfig
+*.sln
+*.DotSettings.user
