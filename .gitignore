@@ -16,7 +16,7 @@ __ExternalActors__/
 __ExternalObjects__/
 
 # temporary
-Characters/
+*/Content/Characters/
 
 # project
 *.vsconfig
