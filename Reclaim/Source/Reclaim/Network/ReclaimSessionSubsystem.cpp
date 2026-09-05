@@ -110,10 +110,9 @@ void UReclaimSessionSubsystem::StartHostSession(int32 MaxPlayers, bool bIsLAN)
 	SessionSettings.bAllowJoinViaPresence = true;
 	SessionSettings.bUsesPresence = true;
 	SessionSettings.bUseLobbiesIfAvailable = false;
-	SessionSettings.BuildUniqueId = 1;
 	SessionSettings.Set(ReclaimSession::PhaseKey, static_cast<int32>(EReclaimSessionPhase::Lobby), EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 	SessionSettings.Set(ReclaimSession::BuildKey, ReclaimSession::BuildSchema, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
-	UE_LOG(LogTemp, Log, TEXT("[Reclaim Session] Creating GameSession: LAN=%s MaxPlayers=%d"), bIsLAN ? TEXT("true") : TEXT("false"), SessionSettings.NumPublicConnections);
+	UE_LOG(LogTemp, Log, TEXT("[Reclaim Session] Creating GameSession: LAN=%s MaxPlayers=%d BuildId=%d"), bIsLAN ? TEXT("true") : TEXT("false"), SessionSettings.NumPublicConnections, SessionSettings.BuildUniqueId);
 
 	CreateSessionCompleteHandle = Sessions->AddOnCreateSessionCompleteDelegate_Handle(
 		FOnCreateSessionCompleteDelegate::CreateUObject(this, &UReclaimSessionSubsystem::HandleCreateSessionComplete));
@@ -144,6 +143,7 @@ void UReclaimSessionSubsystem::FindSessions(int32 MaxResults, bool bIsLAN)
 	SessionSearch->MaxSearchResults = FMath::Max(1, MaxResults);
 	SessionSearch->bIsLanQuery = bEffectiveLAN;
 	SessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+	UE_LOG(LogTemp, Log, TEXT("[Reclaim Session] Finding sessions: LAN=%s MaxResults=%d LocalBuildId=%d"), bEffectiveLAN ? TEXT("true") : TEXT("false"), SessionSearch->MaxSearchResults, GetBuildUniqueId());
 
 	FindSessionsCompleteHandle = Sessions->AddOnFindSessionsCompleteDelegate_Handle(
 		FOnFindSessionsCompleteDelegate::CreateUObject(this, &UReclaimSessionSubsystem::HandleFindSessionsComplete));

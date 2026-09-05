@@ -84,11 +84,9 @@ AReclaimPlayerCharacter::AReclaimPlayerCharacter()
 	FirstPersonArmsMeshA->SetOwnerNoSee(false);
 	FirstPersonArmsMeshA->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	FirstPersonArmsMeshA->SetCastShadow(false);
-	//FirstPersonArmsMesh->SetLeaderPoseComponent(GetMesh());
 
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
 	FirstPersonCameraComponent->SetupAttachment(FirstPersonArmsMeshA);
-	//FirstPersonCameraComponent->SetRelativeLocation(FVector(-10.0f, 0.0f, 72.0f));
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
 	if (USkeletalMeshComponent* ThirdPersonMesh = GetMesh())
@@ -140,11 +138,6 @@ void AReclaimPlayerCharacter::BeginPlay()
 	{
 		DefaultMaxWalkSpeed = MovementComponent->MaxWalkSpeed;
 	}
-
-	/*if (FirstPersonArmsMeshA && GetMesh())
-	{
-		FirstPersonArmsMeshA->SetLeaderPoseComponent(GetMesh());
-	}*/
 
 	RefreshPerspectiveVisibility();
 	if (const AReclaimPlayerState* ReclaimPlayerState = GetReclaimPlayerState())
