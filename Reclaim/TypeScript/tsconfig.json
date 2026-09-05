@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "outDir": "../Content/JavaScript",
+    "strict": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "declaration": false,
+    "typeRoots": [
+      "../Typing",
+      "../node_modules/@types"
+    ]
+  },
+  "include": [
+    "Reclaim/**/*.ts"
+  ]
+}
