@@ -20,7 +20,8 @@ public class Reclaim : ModuleRules
 			"GameplayAbilities",
 			"GameplayTags",
 			"GameplayTasks",
-			"UMG"
+			"UMG",
+			"JsEnv"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]
